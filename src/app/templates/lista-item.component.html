@@ -1,0 +1,25 @@
+<li class="list-group-item">
+    <div>
+        <a [routerLink]="['/lista', item.Id]" *ngIf="visible">
+            <b>{{item.Nombre}}</b>
+        </a>
+        <span class="badge badge-danger badge-pill" (click)="eliminar()" *ngIf="visible">eliminar</span>
+        <span class="badge badge-info badge-pill" (click)="visible= !visible" *ngIf="visible">editar</span>
+        <span class="badge badge-info badge-pill" (click)="visible= !visible" *ngIf="!visible">cancelar</span>
+    </div>
+    <div>
+        <p *ngIf="visible">{{item.Descripcion}}</p>
+        <div *ngIf="!visible">
+            <div class="alert alert-danger" *ngIf="alertModificacion">
+                Se ha producido un error, vuelva a intentarlo y asegurese de que el "campo Nombre" no esté en blanco.
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="item.Nombre"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="item.Descripcion"/>
+            </div>
+            <button class="btn btn-info btn-sm" (click)="modificar()">Guardar</button>
+        </div>
+    </div>
+</li>

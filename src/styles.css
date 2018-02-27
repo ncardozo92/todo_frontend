@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face{
+
+    src : url("./DroidSans.ttf");
+    font-family: "base-font";
+}
+
+*{
+    font-family: "base-font";
+}
+
+.badge{
+
+    cursor: pointer;
+}
