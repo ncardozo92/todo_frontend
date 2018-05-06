@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core"
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core"
 import { TodoService} from "./servicios/todo.service"
 
 import { TodoList } from "./types/TodoList";
@@ -9,19 +9,24 @@ import { TodoList } from "./types/TodoList";
     templateUrl : "./templates/lista-item.component.html" 
 })
 
-export class ListaItemComponent{
+export class ListaItemComponent implements OnInit{
 
-    @Input() private item : TodoList
+    @Input() item : TodoList
 
     @Output() onDelete = new EventEmitter<number>()
 
-    private estadoAnterior : TodoList
+    private estadoActual : TodoList
 
     private visible :boolean = true 
 
     private alertModificacion :boolean = false 
 
     constructor( private todoService: TodoService){
+    }
+
+    ngOnInit() {
+
+        this.estadoActual = Object.assign({},this.item)
     }
 
     public eliminar() : void {
@@ -41,14 +46,12 @@ export class ListaItemComponent{
         this.todoService.modificarLista(this.item).subscribe( response =>{
 
             this.visible = true
-
-            this.estadoAnterior = this.item
         },
         error =>{
 
                 this.alertModificacion = true
 
-                this.item = this.estadoAnterior
+                this.item = this.estadoActual
             })
     }
 }

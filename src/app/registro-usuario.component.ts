@@ -8,7 +8,8 @@ import { Usuario } from "./types/Usuario"
 @Component({
     
     selector : "registro-usuario",
-    templateUrl : "./templates/registro-usuario.component.html"
+    templateUrl : "./templates/registro-usuario.component.html",
+    styles : ["section{ margin-top: 50px;}"]
    })
    
 export class RegistroUsuarioComponent{

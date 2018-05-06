@@ -10,11 +10,16 @@ import { TodoList } from "./types/TodoList";
 @Component({
 
     selector : "listas",
-    templateUrl : "./templates/panel-listas.component.html"
+    templateUrl : "./templates/panel-listas.component.html",
+    styles : ["ul.list-group{ margin-top : 10px;}"]
 })
 
 export class PanelListas implements OnInit{
 
+    
+    private listasTareas : TodoList[] = []
+
+    private lista : TodoList = new TodoList()
 
     constructor( 
         private todoService : TodoService,
@@ -22,20 +27,15 @@ export class PanelListas implements OnInit{
         private router : Router
     ){}
 
-    private listas : TodoList[]
-
-    private lista : TodoList = new TodoList()
-
     ngOnInit(){
 
-        let idUsuario : number= this.usuarioService.getSessionId()
+        this.usuarioService.verificarJwtCookie()
+               
+        this.todoService.getAll().subscribe( response =>{
 
-        this.lista.IdUsuario = idUsuario
-                
-        this.todoService.getAll(idUsuario).subscribe( response =>{
-
-            this.listas = response
+            this.listasTareas = response.body as TodoList[]
         })
+                
     }
 
     public crear() : void{
@@ -66,9 +66,9 @@ export class PanelListas implements OnInit{
 
     public removerEliminado( id : number ) : void{
 
-        let index = this.listas.indexOf(this.listas.find(l => l.Id == id))
+        let index = this.listasTareas.indexOf(this.listasTareas.find(l => l.Id == id))
 
-        this.listas.splice(index,1)
+        this.listasTareas.splice(index,1)
     }
 
     

@@ -8,7 +8,8 @@ import { Usuario } from "./types/Usuario";
 @Component({
 
     selector : "login",
-    templateUrl : "./templates/login.component.html"
+    templateUrl : "./templates/login.component.html",
+    styles : ["section{ margin-top : 55px!important;}"]
 })
 
 export class LoginComponent{
@@ -28,7 +29,7 @@ export class LoginComponent{
 
             this.usuarioService.login( this.usuario ).subscribe(response =>{
 
-                document.cookie = "UserId=" + response.body.Id + ";expires=" + ( Date.now() + 28800) //se setea la cookie por 8 horas
+                this.usuarioService.setSessionCookie(response.body)
                     
                 this.router.navigate(["/listas"])
             },

@@ -16,40 +16,38 @@ export class UsuarioService{
 
     private apiUrl : string = "http://localhost:57872/api/Usuario/"
 
+    private sessionCookieName = "SessionToken"
+
     
-    public login( usuarioSolicitante : Usuario ) : Observable<HttpResponse<UsuarioResponse>> {
+    public login( usuarioSolicitante : Usuario ) : Observable<HttpResponse<string>> {
         
-        return this.http.post<UsuarioResponse>(`${this.apiUrl}Login`,usuarioSolicitante, {observe : "response"})
+        return this.http.post<string>(`${this.apiUrl}Login`,usuarioSolicitante, {observe : "response"})
     }
 
-    logout(){
+    public setSessionCookie(jwtToken){
+                
+        let fechaExpiracion = new Date()
 
-        document.cookie = "UserId=0;expires=Thu, 01 Jan 1970 00:00:01 GMT"
+        let tiempoExpriracion = fechaExpiracion.getHours()
+
+        tiempoExpriracion += 8 //seteo la hora de caducidad de la cookie en 8 horas
+
+        fechaExpiracion.setHours(tiempoExpriracion)
+        
+        document.cookie = this.sessionCookieName + "=" + jwtToken + ";expires=" + fechaExpiracion + ";" 
     }
 
-    public getSessionId () : number{
+    public logout(){
 
-        let cookies
-        let cookie
-        let splitedCookie
+        document.cookie = this.sessionCookieName + "=0;expires=Thu, 01 Jan 1970 00:00:01 GMT"
+    }
+    
+    public verificarJwtCookie() : void{
 
-        if(document.cookie.length > 0){
+        let cookies = document.cookie.split(';')
 
-            cookies = document.cookie.split(";")
-
-            cookie = cookies.find( ( c ) => c.includes("UserId"))
-        }
-        
-
-        if(cookie != null){
-
-            splitedCookie = cookie.split("=")
-            
-            return parseInt(splitedCookie[1])
-        }
-        else
+        if( cookies.find( (c)=> c.includes(this.sessionCookieName)) == null)
             this.router.navigate(["/login"])
-            
     }
 
     public goBack() : void{

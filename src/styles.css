@@ -9,7 +9,53 @@
     font-family: "base-font";
 }
 
+header{
+
+    background-color: hsl(211,100%,50%); /*hsl(230,91%,100%)*/
+}
+
+footer{
+
+    margin-top : 5px;
+    background-color : hsl(211, 30%, 35%);
+    
+}
+
+footer a, header a{
+
+    color: hsl(208,0%,100%)!important;
+}
+
+footer a:hover,header a:hover{
+
+    text-decoration : none;
+}
+
 .badge{
 
     cursor: pointer;
 }
+
+section{
+
+    margin-top: 20px;
+}
+
+/* ajustes de interfaz temporal*/
+/*
+@media(max-width : 576px){
+
+    section{
+
+        min-height: 580px;
+    }
+}
+
+@media(min-width: 576) and (max-width : 767px){
+
+    section{
+
+        min-height: 940px;
+    }
+}
+*/

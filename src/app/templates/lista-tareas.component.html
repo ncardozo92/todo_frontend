@@ -1,19 +1,21 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">{{ lista.Nombre }}</h1>
-            <button class=" btn btn-info btn-sm" (click)="goBack()">Volver</button>
-            <form class="form-inline" (submit)="agregarTarea()">
-                <div class="form-group mr-2">
-                    <input type="text" class="form-control" [(ngModel)]="tarea.descripcion" [ngModelOptions]="{standalone : true}" />
-                </div>
-                <button class="btn btn-info btn-sm">Agregar</button>
-            </form>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">{{ lista.Nombre }}</h1>
+                <button class=" btn btn-info btn-sm" (click)="goBack()">Volver</button>
+                <form class="form-inline" (submit)="agregarTarea()">
+                    <div class="form-group mr-2">
+                        <input type="text" class="form-control" [(ngModel)]="tarea.Descripcion" [ngModelOptions]="{standalone : true}" />
+                    </div>
+                    <button class="btn btn-info btn-sm">Agregar</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <tarea *ngFor="let tarea of tareas" [item]="tarea" (onDelete)="removerTareaEliminada($event)"></tarea>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <tarea *ngFor="let tarea of tareas" [item]="tarea" (onDelete)="removerTareaEliminada($event)"></tarea>
-        </div>
-    </div>
-</div>
+</section>

@@ -1,27 +1,29 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-6 offset-sm-3">
-            <div class="card">
-                <div class="card-header">
-                    <h1 class="card-title text-center">Registro</h1>
-                </div>
-                <div class="card-body">
-                    <div class="alert alert-danger" *ngIf="errorAlert != null">{{errorAlert}}</div>
-                    <form (submit)="registrar()">
-                        <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="usuario.UserName" [ngModelOptions]="{standalone : true}" placeholder="Nombre de Usuario" />
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" [(ngModel)]="usuario.Mail" [ngModelOptions]="{standalone : true}" placeholder="e-mail"/>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" [(ngModel)]="usuario.Clave" [ngModelOptions]="{standalone : true}" placeholder="contraseña"/>
-                        </div>
-                        <button class="btn btn-success">Registrar</button>
-                        <a routerLink="/login" class="btn btn-danger">Cancelar</a>
-                    </form>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 offset-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="card-title text-center">Registro</h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-danger" *ngIf="errorAlert != null">{{errorAlert}}</div>
+                        <form (submit)="registrar()">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="usuario.UserName" [ngModelOptions]="{standalone : true}" placeholder="Nombre de Usuario" />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" [(ngModel)]="usuario.Mail" [ngModelOptions]="{standalone : true}" placeholder="e-mail"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" [(ngModel)]="usuario.Clave" [ngModelOptions]="{standalone : true}" placeholder="contraseña"/>
+                            </div>
+                            <button class="btn btn-success">Registrar</button>
+                            <a routerLink="/login" class="btn btn-danger">Cancelar</a>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>

@@ -12,7 +12,8 @@ import { TodoList } from "./types/TodoList";
 @Component({
     
     selector : "lista-tareas",
-    templateUrl : "./templates/lista-tareas.component.html"
+    templateUrl : "./templates/lista-tareas.component.html",
+    styles : [".form-inline{margin-top: 10px;}"]
    })
    
 export class ListaTareasComponent{
@@ -34,11 +35,13 @@ export class ListaTareasComponent{
 
             this.todoService.getTareas(id).subscribe( response => {
 
-                this.tareas = response
+                this.tareas = response.body as Tarea[]
             })
         }
 
     ngOnInit(){
+
+        this.usuarioService.verificarJwtCookie()
 
         let id : number = Number(this.activatedRoute.snapshot.paramMap.get("id"))
 
@@ -46,7 +49,7 @@ export class ListaTareasComponent{
 
         this.todoService.getLista(id).subscribe( response =>{
 
-            this.lista = response
+            this.lista = response.body as TodoList
         })
         
         this.getTareas(id)
@@ -62,6 +65,8 @@ export class ListaTareasComponent{
         this.todoService.agregarTarea( this.tarea).subscribe(response =>{
 
             this.ngOnInit()
+
+            this.tarea.Descripcion = ""
         },
         error =>{
 

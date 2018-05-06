@@ -1,29 +1,31 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-6 offset-sm-3">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Bienvenido</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="alert alert-danger" *ngIf="notFoundAlert">
-                        usuario y/o contraseña incorrectos
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 offset-sm-3">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h3 class="card-title">Bienvenido</h3>
                     </div>
-                    <form (submit)="login()">
-                        <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="usuario.Username" [ngModelOptions]="{standalone : true}"/>
+                    <div class="card-body">
+                        <div class="alert alert-danger" *ngIf="notFoundAlert">
+                            usuario y/o contraseña incorrectos
                         </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" [(ngModel)]="usuario.Clave" [ngModelOptions]="{standalone : true}"/>
-                        </div>
-                        <div class="alert alert-info" *ngIf="emptyFieldsAlert">
-                            Los campos no pueden quedar vacíos
-                        </div>
-                        <button class="btn btn-info">Ingresar</button>
-                    </form>
-                    <a routerLink="/registrarse" class="btn btn-link btn-sm">¿No tiene una cuenta? Registrese aquí</a>
+                        <form (submit)="login()">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="usuario.Username" [ngModelOptions]="{standalone : true}"/>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" [(ngModel)]="usuario.Clave" [ngModelOptions]="{standalone : true}"/>
+                            </div>
+                            <div class="alert alert-info" *ngIf="emptyFieldsAlert">
+                                Los campos no pueden quedar vacíos
+                            </div>
+                            <button class="btn btn-info">Ingresar</button>
+                        </form>
+                        <a routerLink="/registrarse" class="btn btn-link btn-sm">¿No tiene una cuenta? Registrese aquí</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
